@@ -1,5 +1,8 @@
 package register;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static java.lang.Character.isDigit;
 
 /**
@@ -64,13 +67,27 @@ public class Person implements Comparable<Person>{
      */
 
     private boolean isValidPhoneNumber(String phoneNumber) {
-        int num = 0;
+        final String regex = "(\\d)";
+
+        Pattern pattern = Pattern.compile(regex);
+
         for (int i = 0; i < phoneNumber.length(); i++) {
-           if(!isDigit(phoneNumber.charAt(i))){
-               num++;
-           }
+            String reg = String.valueOf(phoneNumber.charAt(i));
+            Matcher matcher = pattern.matcher(reg);
+            if (!matcher.matches()){
+                return false;
+            }
         }
-        return num == 0;
+
+        return true;
+
+//        int num = 0;
+//        for (int i = 0; i < phoneNumber.length(); i++) {
+//           if(!isDigit(phoneNumber.charAt(i))){
+//               num++;
+//           }
+//        }
+//        return num == 0;
     }
     
     /**

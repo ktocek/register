@@ -9,6 +9,7 @@ public class Register {
      */
     public Person[] persons;
 
+
     /**
      * Number of persons in this register.
      */
