@@ -84,9 +84,6 @@ public class Person implements Comparable<Person>{
 
     @Override
     public int compareTo(Person o) {
-        if (name == null){
-            return 0;
-        }else
         return name.compareTo(o.name);
     }
 }

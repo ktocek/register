@@ -87,19 +87,12 @@ public class ConsoleUI {
     }
 
     private void printRegister() {
-        Person[] person = new Person[register.getCount()];
-        for (int i = 0; i < register.getSize(); i++) {
-            if (register.getPerson(i) != null) {
-                person[i] = register.getPerson(i);
-            }
-        }
-
-        Arrays.sort(person);
+        Arrays.sort(register.persons, Comparator.nullsLast(Comparator.naturalOrder()));
 
         for (int i = 0; i < register.getSize(); i++) {
-            //register.getPerson(i) = person[i];
             System.out.println((i + 1) + ". " + register.getPerson(i));
         }
+
     }
 
     private void addToRegister() {
