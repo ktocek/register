@@ -13,7 +13,7 @@ public class ConsoleUI {
     /**
      * register.Register of persons.
      */
-    private Register register;
+    private ArrayRegister arrayRegister;
 
     /**
      * In JDK 6 use Console class instead.
@@ -31,8 +31,8 @@ public class ConsoleUI {
 
     ;
 
-    public ConsoleUI(Register register) {
-        this.register = register;
+    public ConsoleUI(ArrayRegister arrayRegister) {
+        this.arrayRegister = arrayRegister;
     }
 
     public void run() {
@@ -87,10 +87,10 @@ public class ConsoleUI {
     }
 
     private void printRegister() {
-        Arrays.sort(register.persons, Comparator.nullsLast(Comparator.naturalOrder()));
+        Arrays.sort(arrayRegister.persons, Comparator.nullsLast(Comparator.naturalOrder()));
 
-        for (int i = 0; i < register.getSize(); i++) {
-            System.out.println((i + 1) + ". " + register.getPerson(i));
+        for (int i = 0; i < arrayRegister.getSize(); i++) {
+            System.out.println((i + 1) + ". " + arrayRegister.getPerson(i));
         }
 
     }
@@ -102,8 +102,8 @@ public class ConsoleUI {
         System.out.println("Enter Phone Number: ");
         String phoneNumber = readLine();
 
-        for (int i = 0; i < register.getSize(); i++) {
-            Person person = register.getPerson(i);
+        for (int i = 0; i < arrayRegister.getSize(); i++) {
+            Person person = arrayRegister.getPerson(i);
             if (person == null) {
                 equalString = true;
             } else if (person.getName().equals(name) || person.getPhoneNumber().equals(phoneNumber)) {
@@ -113,7 +113,7 @@ public class ConsoleUI {
         }
 
         if (equalString) {
-            register.addPerson(new Person(name, phoneNumber));
+            arrayRegister.addPerson(new Person(name, phoneNumber));
         } else System.out.println("Person already exist!");
     }
 
@@ -124,7 +124,7 @@ public class ConsoleUI {
         String name = readLine();
         System.out.println("Enter new Phone Number: ");
         String phoneNumber = readLine();
-        Person person = register.getPerson(index - 1);
+        Person person = arrayRegister.getPerson(index - 1);
         person.setName(name);
         person.setPhoneNumber(phoneNumber);
     }
@@ -135,19 +135,19 @@ public class ConsoleUI {
         if (num == 1) {
             System.out.println("Enter name: ");
             String name = readLine();
-            register.findPersonByName(name);
+            arrayRegister.findPersonByName(name);
         } else if (num == 2) {
             System.out.println("Enter phone number: ");
             String phoneNumber = readLine();
-            register.findPersonByPhoneNumber(phoneNumber);
+            arrayRegister.findPersonByPhoneNumber(phoneNumber);
         } else System.out.println("Bad input!");
     }
 
     private void removeFromRegister() {
         System.out.println("Enter index: ");
         int index = Integer.parseInt(readLine());
-        Person person = register.getPerson(index - 1);
-        register.removePerson(person);
+        Person person = arrayRegister.getPerson(index - 1);
+        arrayRegister.removePerson(person);
     }
 
 }
