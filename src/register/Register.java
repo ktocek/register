@@ -1,6 +1,7 @@
 package register;
 
 public interface Register {
+
     int getCount();
 
     int getSize();
